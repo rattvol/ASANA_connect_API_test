@@ -22,14 +22,5 @@ namespace ASANA_connect_API_test.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0/20258dc9533ed44835cb0f2c1175fc6f")]
-        public string token {
-            get {
-                return ((string)(this["token"]));
-            }
-        }
     }
 }

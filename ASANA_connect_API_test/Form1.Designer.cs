@@ -164,9 +164,9 @@
             this.checkBoxNotDone.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxNotDone.Location = new System.Drawing.Point(571, 64);
             this.checkBoxNotDone.Name = "checkBoxNotDone";
-            this.checkBoxNotDone.Size = new System.Drawing.Size(128, 17);
+            this.checkBoxNotDone.Size = new System.Drawing.Size(145, 17);
             this.checkBoxNotDone.TabIndex = 13;
-            this.checkBoxNotDone.Text = "Кроме законченных";
+            this.checkBoxNotDone.Text = "Только незаконченные";
             this.checkBoxNotDone.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.checkBoxNotDone.UseVisualStyleBackColor = true;
             // 
@@ -252,6 +252,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

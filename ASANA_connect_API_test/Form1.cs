@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
+using System.Configuration;
+using System.IO;
+using System.Web.Script.Serialization;
+
 
 namespace ASANA_connect_API_test
 {
@@ -20,10 +24,12 @@ namespace ASANA_connect_API_test
         }
         public void FillForm()
         {
+           
             UserData ud = new UserData();
-            labelUserName.Text = ud.UserFind("me").data.name;
-            labelEmail.Text = ud.UserFind("me").data.email;
-            labelProject.Text = ud.UserFind("me").data.workspaces[0].name;
+            RootObject ro = ud.UserFind("me"); 
+            labelUserName.Text = ro.data.name;
+            labelEmail.Text = ro.data.email;
+            labelProject.Text = ro.data.workspaces[0].name;
 
             UsersData usd = new UsersData();
             List<Datum> listOfUsers = usd.UsersFind();//краткий перечень пользователей
@@ -73,11 +79,16 @@ namespace ASANA_connect_API_test
                     proj += ftf.name + "; ";
                 }
                 
-                if (yes&(dtf.completed==checkBoxNotDone.Checked)) dataGridView1.Rows.Add(n, i.name, follw, dtf.due_on, dtf.completed, proj, dtf.notes);
-                progressBar1.Value = Convert.ToInt32((n / c1) * 100);
+                if (yes&(dtf.completed!=checkBoxNotDone.Checked)) dataGridView1.Rows.Add(n, i.name, follw, dtf.due_on, dtf.completed, proj, dtf.notes);
+                progressBar1.Value = Convert.ToInt32(n* 100 / c1 );
                 n++;
             }
             label6.Text = "Данные загружены";
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
         }
     }

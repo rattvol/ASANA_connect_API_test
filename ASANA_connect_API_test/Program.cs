@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Configuration;
 using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
@@ -21,7 +21,13 @@ namespace ASANA_connect_API_test
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            if (ConfigurationManager.AppSettings["token"].Length != 34)
+            {
+                Form2 form2 = new Form2();
+                form2.ShowDialog();
+                if (form2.Err) Application.Exit(); else Application.Run(new Form1());
+            }
+            else  Application.Run(new Form1());
         }
     }
     //получение перечня задач
@@ -134,7 +140,8 @@ namespace ASANA_connect_API_test
         //}
         public string ConnectToLinq(string conline)
         {
-            string token = Properties.Settings.Default.token;
+            //string token = Properties.Settings.Default.token;
+            string token = ConfigurationManager.AppSettings.Get("token");
             token = "Bearer " + token;
             //HttpRequestHeader. WwwAuthenticate
             WebHeaderCollection webHeaderCollection = new WebHeaderCollection();
