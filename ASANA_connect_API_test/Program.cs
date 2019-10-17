@@ -24,21 +24,88 @@ namespace ASANA_connect_API_test
             Application.Run(new Form1());
         }
     }
-    //**************получение данных по пользователю*******
-    public class UserData
+    //получение перечня задач
+    public class TaskData
     {
-        public string UserFind()
+        public List<Datum> TasksFind(string project)
         {
-string connectionLine;
+            string connectionLine;
             Connect conection = new Connect();
-            connectionLine = "https://app.asana.com/api/1.0/users/me";
+            connectionLine = "https://app.asana.com/api/1.0/projects/" + project+"/tasks";
             string result = conection.ConnectToLinq(connectionLine);
             DeserializeThiseJson deser = new DeserializeThiseJson();
             //*******только для одного запроса про пользователя**********
+            RootObjectUsers meClass = new RootObjectUsers();
+            meClass = (RootObjectUsers)deser.DeserializeMe(result, meClass);
+            return meClass.data;
+        }
+    }
+    //получение подробных данных по задаче
+    public class TaskFullData
+    {
+        public DataTaskFull TasksFind(string gid)
+        {
+            string fullLine = "/" + gid;
+            string connectionLine;
+            Connect conection = new Connect();
+            connectionLine = "https://app.asana.com/api/1.0/tasks" + fullLine+ "?opt_fields=gid,completed,due_on,followers.name,name,notes,projects.name";
+            string result = conection.ConnectToLinq(connectionLine);
+            DeserializeThiseJson deser = new DeserializeThiseJson();
+            //*******только для одного запроса про пользователя**********
+            RootObjectTaskFull meClass = new RootObjectTaskFull();
+            meClass = (RootObjectTaskFull)deser.DeserializeMe(result, meClass);
+            return meClass.data;
+        }
+    }
+    public class ProjectNames
+    {
+        public List<Datum> ProjectsFind()
+        {
+            string connectionLine;
+            Connect conection = new Connect();
+            connectionLine = "https://app.asana.com/api/1.0/projects";
+            string result = conection.ConnectToLinq(connectionLine);
+            DeserializeThiseJson deser = new DeserializeThiseJson();
+            //*******только для одного запроса про пользователя**********
+            RootObjectUsers meClass = new RootObjectUsers();
+            meClass = (RootObjectUsers)deser.DeserializeMe(result, meClass);
+            return meClass.data;
+        }
+    }
+    //**************получение данных по пользователю*******
+    public class UserData
+    {
+        public RootObject UserFind(string userid)
+        {
+            string connectionLine;
+            Connect conection = new Connect();
+            connectionLine = "https://app.asana.com/api/1.0/users/" + userid;
+            string result = conection.ConnectToLinq(connectionLine);
+            DeserializeThiseJson deser = new DeserializeThiseJson();
             RootObject meClass = new RootObject();
             meClass = (RootObject)deser.DeserializeMe(result, meClass);
-            string resultLine = "Имя: " + meClass.data.name + ", email:" + meClass.data.email + ", группа:" + meClass.data.workspaces[2];
-            return resultLine;
+            return meClass;
+        }
+    }
+    //***************получение данных по всем пользователям(перечень)
+    public class UsersData
+    {
+        public List<Datum> UsersFind()
+        {
+            string connectionLine = "https://app.asana.com/api/1.0/users";
+            Connect conection = new Connect();
+            string result = conection.ConnectToLinq(connectionLine);
+            RootObjectUsers meClassUSD = new RootObjectUsers();
+            try
+            {
+                DeserializeThiseJson deser = new DeserializeThiseJson();
+                meClassUSD = (RootObjectUsers)deser.DeserializeMe(result, meClassUSD);
+            }
+            catch (Exception e)
+            {
+            }
+            List<Datum> dat = meClassUSD.data;
+            return meClassUSD.data;
         }
     }
     //********десериализация***********
@@ -55,7 +122,7 @@ string connectionLine;
             {
 
             }
-                return deserialized;
+            return deserialized;
 
         }
     }
@@ -72,6 +139,7 @@ string connectionLine;
             //HttpRequestHeader. WwwAuthenticate
             WebHeaderCollection webHeaderCollection = new WebHeaderCollection();
             webHeaderCollection.Add(HttpRequestHeader.Authorization, token);
+
             WebRequest newRequest = WebRequest.Create(conline);
             newRequest.Headers = webHeaderCollection;
             WebResponse newResponse = newRequest.GetResponse();

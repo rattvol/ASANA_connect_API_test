@@ -28,32 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.inTextbox = new System.Windows.Forms.TextBox();
-            this.RunRequest = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.outTextBox = new System.Windows.Forms.TextBox();
+            this.labelUserName = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.labelEmail = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.labelProject = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.comboBoxUser = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.labelUser = new System.Windows.Forms.Label();
+            this.comboBoxProject = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.checkBoxNotDone = new System.Windows.Forms.CheckBox();
+            this.buttonRun = new System.Windows.Forms.Button();
+            this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.taskName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.followers = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.doDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.completed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.project = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // inTextbox
-            // 
-            this.inTextbox.Location = new System.Drawing.Point(60, 38);
-            this.inTextbox.Multiline = true;
-            this.inTextbox.Name = "inTextbox";
-            this.inTextbox.Size = new System.Drawing.Size(702, 146);
-            this.inTextbox.TabIndex = 0;
-            this.inTextbox.TextChanged += new System.EventHandler(this.ConnectionText_TextChanged);
-            // 
-            // RunRequest
-            // 
-            this.RunRequest.Location = new System.Drawing.Point(60, 201);
-            this.RunRequest.Name = "RunRequest";
-            this.RunRequest.Size = new System.Drawing.Size(159, 37);
-            this.RunRequest.TabIndex = 1;
-            this.RunRequest.Text = "Выполнить ";
-            this.RunRequest.UseVisualStyleBackColor = true;
-            this.RunRequest.Click += new System.EventHandler(this.buttonToAsanaCreate_Click);
             // 
             // label1
             // 
@@ -64,58 +60,204 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Пользователь: ";
             // 
-            // outTextBox
+            // labelUserName
             // 
-            this.outTextBox.Location = new System.Drawing.Point(60, 267);
-            this.outTextBox.Multiline = true;
-            this.outTextBox.Name = "outTextBox";
-            this.outTextBox.Size = new System.Drawing.Size(702, 159);
-            this.outTextBox.TabIndex = 3;
+            this.labelUserName.AutoSize = true;
+            this.labelUserName.Location = new System.Drawing.Point(152, 13);
+            this.labelUserName.Name = "labelUserName";
+            this.labelUserName.Size = new System.Drawing.Size(35, 13);
+            this.labelUserName.TabIndex = 5;
+            this.labelUserName.Text = "label3";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(282, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(34, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "email:";
+            // 
+            // labelEmail
+            // 
+            this.labelEmail.AutoSize = true;
+            this.labelEmail.Location = new System.Drawing.Point(322, 13);
+            this.labelEmail.Name = "labelEmail";
+            this.labelEmail.Size = new System.Drawing.Size(34, 13);
+            this.labelEmail.TabIndex = 7;
+            this.labelEmail.Text = "email:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(473, 13);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(47, 13);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Проект:";
+            // 
+            // labelProject
+            // 
+            this.labelProject.AutoSize = true;
+            this.labelProject.Location = new System.Drawing.Point(526, 13);
+            this.labelProject.Name = "labelProject";
+            this.labelProject.Size = new System.Drawing.Size(34, 13);
+            this.labelProject.TabIndex = 7;
+            this.labelProject.Text = "email:";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.number,
+            this.taskName,
+            this.followers,
+            this.doDate,
+            this.completed,
+            this.project,
+            this.comment});
+            this.dataGridView1.Location = new System.Drawing.Point(60, 177);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(999, 409);
+            this.dataGridView1.TabIndex = 8;
+            // 
+            // comboBoxUser
+            // 
+            this.comboBoxUser.FormattingEnabled = true;
+            this.comboBoxUser.Location = new System.Drawing.Point(60, 64);
+            this.comboBoxUser.Name = "comboBoxUser";
+            this.comboBoxUser.Size = new System.Drawing.Size(221, 21);
+            this.comboBoxUser.TabIndex = 9;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(63, 245);
+            this.label2.Location = new System.Drawing.Point(60, 45);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(159, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Результат отработки запроса";
+            this.label2.Size = new System.Drawing.Size(108, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Выбор исполнителя";
             // 
-            // labelUser
+            // comboBoxProject
             // 
-            this.labelUser.AutoSize = true;
-            this.labelUser.Location = new System.Drawing.Point(153, 12);
-            this.labelUser.Name = "labelUser";
-            this.labelUser.Size = new System.Drawing.Size(35, 13);
-            this.labelUser.TabIndex = 5;
-            this.labelUser.Text = "label3";
+            this.comboBoxProject.FormattingEnabled = true;
+            this.comboBoxProject.Location = new System.Drawing.Point(298, 64);
+            this.comboBoxProject.Name = "comboBoxProject";
+            this.comboBoxProject.Size = new System.Drawing.Size(222, 21);
+            this.comboBoxProject.TabIndex = 11;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(298, 44);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(84, 13);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Выбор проекта";
+            // 
+            // checkBoxNotDone
+            // 
+            this.checkBoxNotDone.AutoSize = true;
+            this.checkBoxNotDone.Location = new System.Drawing.Point(571, 64);
+            this.checkBoxNotDone.Name = "checkBoxNotDone";
+            this.checkBoxNotDone.Size = new System.Drawing.Size(128, 17);
+            this.checkBoxNotDone.TabIndex = 13;
+            this.checkBoxNotDone.Text = "Кроме законченных";
+            this.checkBoxNotDone.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.checkBoxNotDone.UseVisualStyleBackColor = true;
+            // 
+            // buttonRun
+            // 
+            this.buttonRun.Location = new System.Drawing.Point(60, 117);
+            this.buttonRun.Name = "buttonRun";
+            this.buttonRun.Size = new System.Drawing.Size(221, 26);
+            this.buttonRun.TabIndex = 14;
+            this.buttonRun.Text = "Найти задачи";
+            this.buttonRun.UseVisualStyleBackColor = true;
+            this.buttonRun.Click += new System.EventHandler(this.buttonRun_Click);
+            // 
+            // number
+            // 
+            this.number.HeaderText = "№";
+            this.number.Name = "number";
+            // 
+            // taskName
+            // 
+            this.taskName.HeaderText = "Задача";
+            this.taskName.Name = "taskName";
+            // 
+            // followers
+            // 
+            this.followers.HeaderText = "Участники";
+            this.followers.Name = "followers";
+            // 
+            // doDate
+            // 
+            this.doDate.HeaderText = "Дата готовности";
+            this.doDate.Name = "doDate";
+            // 
+            // completed
+            // 
+            this.completed.HeaderText = "Готово";
+            this.completed.Name = "completed";
+            // 
+            // project
+            // 
+            this.project.HeaderText = "Проект";
+            this.project.Name = "project";
+            // 
+            // comment
+            // 
+            this.comment.HeaderText = "Комментарий";
+            this.comment.Name = "comment";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.labelUser);
+            this.ClientSize = new System.Drawing.Size(1071, 598);
+            this.Controls.Add(this.buttonRun);
+            this.Controls.Add(this.checkBoxNotDone);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.comboBoxProject);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.outTextBox);
+            this.Controls.Add(this.comboBoxUser);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.labelProject);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.labelEmail);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.labelUserName);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.RunRequest);
-            this.Controls.Add(this.inTextbox);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox inTextbox;
-        private System.Windows.Forms.Button RunRequest;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox outTextBox;
+        private System.Windows.Forms.Label labelUserName;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelEmail;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelProject;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ComboBox comboBoxUser;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label labelUser;
+        private System.Windows.Forms.ComboBox comboBoxProject;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox checkBoxNotDone;
+        private System.Windows.Forms.Button buttonRun;
+        private System.Windows.Forms.DataGridViewTextBoxColumn number;
+        private System.Windows.Forms.DataGridViewTextBoxColumn taskName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn followers;
+        private System.Windows.Forms.DataGridViewTextBoxColumn doDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn completed;
+        private System.Windows.Forms.DataGridViewTextBoxColumn project;
+        private System.Windows.Forms.DataGridViewTextBoxColumn comment;
     }
 }
 

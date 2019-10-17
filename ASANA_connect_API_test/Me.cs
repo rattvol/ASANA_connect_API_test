@@ -17,7 +17,7 @@ namespace ASANA_connect_API_test
 
     public class Workspace
     {
-        public int id { get; set; }
+        public long id { get; set; }
         public string gid { get; set; }
         public string name { get; set; }
         public string resource_type { get; set; }
@@ -25,7 +25,7 @@ namespace ASANA_connect_API_test
 
     public class Data
     {
-        public int id { get; set; }
+        public long id { get; set; }
         public string gid { get; set; }
         public string email { get; set; }
         public string name { get; set; }

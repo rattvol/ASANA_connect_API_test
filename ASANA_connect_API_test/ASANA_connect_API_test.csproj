@@ -50,6 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TaskFull.cs" />
+    <Compile Include="Task.cs" />
+    <Compile Include="Users.cs" />
     <Compile Include="Me.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

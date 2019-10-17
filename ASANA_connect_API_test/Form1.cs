@@ -12,23 +12,67 @@ using System.Windows.Forms;
 namespace ASANA_connect_API_test
 {
     public partial class Form1 : Form
-    {           
+    {
         public Form1()
         {
             InitializeComponent();
+            FillForm();
+        }
+        public void FillForm()
+        {
             UserData ud = new UserData();
-            labelUser.Text = ud.UserFind();
+            labelUserName.Text = ud.UserFind("me").data.name;
+            labelEmail.Text = ud.UserFind("me").data.email;
+            labelProject.Text = ud.UserFind("me").data.workspaces[0].name;
+
+            UsersData usd = new UsersData();
+            List<Datum> listOfUsers = usd.UsersFind();//краткий перечень пользователей
+            foreach (Datum i in listOfUsers)
+            {
+               // RootObject newI = ud.UserFind(i.gid);//подробная информация на пользователя
+                comboBoxUser.Items.Add(i.name);
+            }
+            ProjectNames pn = new ProjectNames();
+            List<Datum> listOfProjects = pn.ProjectsFind();//краткий перечень проектов
+            foreach (Datum i in listOfProjects)
+            {
+                comboBoxProject.Items.Add(i.name);
+            }
         }
 
-        private void buttonToAsanaCreate_Click(object sender, EventArgs e)
+
+        private void buttonRun_Click(object sender, EventArgs e)
         {
-            
-
-        }
-
-        private void ConnectionText_TextChanged(object sender, EventArgs e)
-        {
-
+            dataGridView1.Rows.Clear();
+            TaskData td = new TaskData();
+            UsersData usd = new UsersData();
+            List<Datum> listOfUsers = usd.UsersFind();
+            ProjectNames pn = new ProjectNames();
+            List<Datum> listOfProjects = pn.ProjectsFind();//краткий перечень проектов
+            List<Datum> listOfTasks = td.TasksFind(listOfProjects[comboBoxProject.SelectedIndex].gid);
+            string follower = listOfUsers[comboBoxUser.SelectedIndex].gid;
+            TaskFullData tfd = new TaskFullData();
+            int n = 1;
+            bool yes = false;
+            foreach (Datum i in listOfTasks)
+            {
+                yes = false;
+                DataTaskFull dtf = tfd.TasksFind(i.gid);
+                string follw ="";
+                foreach (TheElement ftf in dtf.followers)
+                {
+                    follw += ftf.name + "; ";
+                    if (ftf.gid == follower) yes = true;
+                }
+                string proj = "";
+                foreach (TheElement ftf in dtf.projects)
+                {
+                    proj += ftf.name + "; ";
+                }
+                
+                if (yes&(dtf.completed==checkBoxNotDone.Checked)) dataGridView1.Rows.Add(n, i.name, follw, dtf.due_on, dtf.completed, proj, dtf.notes);
+                n++;
+            }
         }
     }
 }
