@@ -44,6 +44,7 @@ namespace ASANA_connect_API_test
         private void buttonRun_Click(object sender, EventArgs e)
         {
             dataGridView1.Rows.Clear();
+            label6.Text = "Загрузка перечня...";
             TaskData td = new TaskData();
             UsersData usd = new UsersData();
             List<Datum> listOfUsers = usd.UsersFind();
@@ -54,6 +55,8 @@ namespace ASANA_connect_API_test
             TaskFullData tfd = new TaskFullData();
             int n = 1;
             bool yes = false;
+            int c1 = listOfTasks.Count();
+            label6.Text = "Обработка данных...";
             foreach (Datum i in listOfTasks)
             {
                 yes = false;
@@ -71,8 +74,11 @@ namespace ASANA_connect_API_test
                 }
                 
                 if (yes&(dtf.completed==checkBoxNotDone.Checked)) dataGridView1.Rows.Add(n, i.name, follw, dtf.due_on, dtf.completed, proj, dtf.notes);
+                progressBar1.Value = Convert.ToInt32((n / c1) * 100);
                 n++;
             }
+            label6.Text = "Данные загружены";
+
         }
     }
 }

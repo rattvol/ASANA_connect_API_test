@@ -48,6 +48,8 @@
             this.completed = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.project = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -118,7 +120,7 @@
             this.comment});
             this.dataGridView1.Location = new System.Drawing.Point(60, 177);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(999, 409);
+            this.dataGridView1.Size = new System.Drawing.Size(999, 371);
             this.dataGridView1.TabIndex = 8;
             // 
             // comboBoxUser
@@ -158,6 +160,8 @@
             // checkBoxNotDone
             // 
             this.checkBoxNotDone.AutoSize = true;
+            this.checkBoxNotDone.Checked = true;
+            this.checkBoxNotDone.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxNotDone.Location = new System.Drawing.Point(571, 64);
             this.checkBoxNotDone.Name = "checkBoxNotDone";
             this.checkBoxNotDone.Size = new System.Drawing.Size(128, 17);
@@ -211,11 +215,28 @@
             this.comment.HeaderText = "Комментарий";
             this.comment.Name = "comment";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(301, 119);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(739, 23);
+            this.progressBar1.TabIndex = 15;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(309, 103);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(0, 13);
+            this.label6.TabIndex = 16;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1071, 598);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.buttonRun);
             this.Controls.Add(this.checkBoxNotDone);
             this.Controls.Add(this.label4);
@@ -258,6 +279,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn completed;
         private System.Windows.Forms.DataGridViewTextBoxColumn project;
         private System.Windows.Forms.DataGridViewTextBoxColumn comment;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label label6;
     }
 }
 
