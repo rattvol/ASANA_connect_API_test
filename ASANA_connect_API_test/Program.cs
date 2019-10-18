@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Threading.Tasks;
+using System.Web;
 using System.IO;
 using System.Windows.Forms;
 using System.Net;
-using Newtonsoft.Json;
+using System.Text;
 using Newtonsoft.Json.Serialization;
 using System.Web.Script.Serialization;
 
@@ -54,7 +54,7 @@ namespace ASANA_connect_API_test
             string fullLine = "/" + gid;
             string connectionLine;
             Connect conection = new Connect();
-            connectionLine = "https://app.asana.com/api/1.0/tasks" + fullLine+ "?opt_fields=gid,completed,due_on,followers.name,name,notes,projects.name";
+            connectionLine = "https://app.asana.com/api/1.0/tasks" + fullLine+ "?opt_fields=gid,assignee.name,completed,due_on,followers.name,name,notes,projects.name";
             string result = conection.ConnectToLinq(connectionLine);
             DeserializeThiseJson deser = new DeserializeThiseJson();
             //*******только для одного запроса про пользователя**********
@@ -134,16 +134,10 @@ namespace ASANA_connect_API_test
     }
     public class Connect
     {
-        //public Connect(string conline)
-        //{
-        //    ConnectToLinq(conline);
-        //}
         public string ConnectToLinq(string conline)
         {
-            //string token = Properties.Settings.Default.token;
             string token = ConfigurationManager.AppSettings.Get("token");
             token = "Bearer " + token;
-            //HttpRequestHeader. WwwAuthenticate
             WebHeaderCollection webHeaderCollection = new WebHeaderCollection();
             webHeaderCollection.Add(HttpRequestHeader.Authorization, token);
 
@@ -154,6 +148,47 @@ namespace ASANA_connect_API_test
             StreamReader reader = new StreamReader(newStream);
             string outline = reader.ReadToEnd();
             return outline;
+        }
+        public string DownloadToAsana(string data)
+        {
+            string conline = "https://app.asana.com/api/1.0/tasks" + "?opt_fields=gid,assignee.name,completed,due_on,followers.name,name,notes,projects.name";
+            byte[] byteArray = Encoding.UTF8.GetBytes(data);
+            string token = ConfigurationManager.AppSettings.Get("token");
+            token = "Bearer " + token;
+            WebHeaderCollection webHeaderCollection = new WebHeaderCollection();
+            webHeaderCollection.Add(HttpRequestHeader.Authorization, token);
+            WebRequest newRequest = WebRequest.Create(conline);
+            newRequest.Headers = webHeaderCollection;
+            newRequest.Method = "POST";
+            newRequest.ContentType = "application/x-www-form-urlencoded";
+            newRequest.ContentLength = byteArray.Length;
+            Stream newInStream = newRequest.GetRequestStream();
+             using (Stream writer = newRequest.GetRequestStream())
+            {
+                writer.Write(byteArray,0,byteArray.Length);
+            }
+            WebResponse newResponse = newRequest.GetResponse();
+            Stream newStream = newResponse.GetResponseStream();
+            StreamReader reader = new StreamReader(newStream);
+            string outline = reader.ReadToEnd();
+            newStream.Close();
+            return outline;
+        }
+    }
+    public class ListBoxAdding
+    {
+        public List<string> DataStorage { get; private set; }
+        public ListBoxAdding()
+        {
+            this.DataStorage = new List<string>();
+        }
+        public void AddToList (string gid)
+        {
+            DataStorage.Add(gid);
+        }
+        public void DeleteFromList (int id)
+        {
+            DataStorage.RemoveAt(id);
         }
     }
 }

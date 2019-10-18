@@ -41,15 +41,17 @@
             this.label4 = new System.Windows.Forms.Label();
             this.checkBoxNotDone = new System.Windows.Forms.CheckBox();
             this.buttonRun = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.label6 = new System.Windows.Forms.Label();
+            this.buttonAddTask = new System.Windows.Forms.Button();
             this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.taskName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.assignee = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.followers = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.doDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.completed = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.project = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -113,6 +115,7 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.number,
             this.taskName,
+            this.assignee,
             this.followers,
             this.doDate,
             this.completed,
@@ -120,7 +123,7 @@
             this.comment});
             this.dataGridView1.Location = new System.Drawing.Point(60, 177);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(999, 371);
+            this.dataGridView1.Size = new System.Drawing.Size(999, 362);
             this.dataGridView1.TabIndex = 8;
             // 
             // comboBoxUser
@@ -180,6 +183,31 @@
             this.buttonRun.UseVisualStyleBackColor = true;
             this.buttonRun.Click += new System.EventHandler(this.buttonRun_Click);
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(301, 119);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(739, 23);
+            this.progressBar1.TabIndex = 15;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(309, 103);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(0, 13);
+            this.label6.TabIndex = 16;
+            // 
+            // buttonAddTask
+            // 
+            this.buttonAddTask.Location = new System.Drawing.Point(60, 563);
+            this.buttonAddTask.Name = "buttonAddTask";
+            this.buttonAddTask.Size = new System.Drawing.Size(256, 23);
+            this.buttonAddTask.TabIndex = 17;
+            this.buttonAddTask.Text = "Добавить задачу";
+            this.buttonAddTask.UseVisualStyleBackColor = true;
+            this.buttonAddTask.Click += new System.EventHandler(this.buttonAddTask_Click);
+            // 
             // number
             // 
             this.number.HeaderText = "№";
@@ -190,9 +218,14 @@
             this.taskName.HeaderText = "Задача";
             this.taskName.Name = "taskName";
             // 
+            // assignee
+            // 
+            this.assignee.HeaderText = "Исполнитель";
+            this.assignee.Name = "assignee";
+            // 
             // followers
             // 
-            this.followers.HeaderText = "Участники";
+            this.followers.HeaderText = "Подписчики";
             this.followers.Name = "followers";
             // 
             // doDate
@@ -215,26 +248,12 @@
             this.comment.HeaderText = "Комментарий";
             this.comment.Name = "comment";
             // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(301, 119);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(739, 23);
-            this.progressBar1.TabIndex = 15;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(309, 103);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(0, 13);
-            this.label6.TabIndex = 16;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1071, 598);
+            this.Controls.Add(this.buttonAddTask);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.buttonRun);
@@ -273,15 +292,17 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox checkBoxNotDone;
         private System.Windows.Forms.Button buttonRun;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button buttonAddTask;
         private System.Windows.Forms.DataGridViewTextBoxColumn number;
         private System.Windows.Forms.DataGridViewTextBoxColumn taskName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn assignee;
         private System.Windows.Forms.DataGridViewTextBoxColumn followers;
         private System.Windows.Forms.DataGridViewTextBoxColumn doDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn completed;
         private System.Windows.Forms.DataGridViewTextBoxColumn project;
         private System.Windows.Forms.DataGridViewTextBoxColumn comment;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label label6;
     }
 }
 

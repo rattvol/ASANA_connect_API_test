@@ -56,12 +56,16 @@ namespace ASANA_connect_API_test
             List<Datum> listOfUsers = usd.UsersFind();
             ProjectNames pn = new ProjectNames();
             List<Datum> listOfProjects = pn.ProjectsFind();//краткий перечень проектов
-            List<Datum> listOfTasks = td.TasksFind(listOfProjects[comboBoxProject.SelectedIndex].gid);
-            string follower = listOfUsers[comboBoxUser.SelectedIndex].gid;
+            string projectGid;
+            if (comboBoxProject.SelectedIndex >= 0) projectGid = listOfProjects[comboBoxProject.SelectedIndex].gid;
+            else projectGid = null;
+            List<Datum> listOfTasks = td.TasksFind(projectGid);
+            string assignee = listOfUsers[comboBoxUser.SelectedIndex].gid;
             TaskFullData tfd = new TaskFullData();
             int n = 1;
             bool yes = false;
             int c1 = listOfTasks.Count();
+            int t = 1;
             label6.Text = "Обработка данных...";
             foreach (Datum i in listOfTasks)
             {
@@ -71,17 +75,24 @@ namespace ASANA_connect_API_test
                 foreach (TheElement ftf in dtf.followers)
                 {
                     follw += ftf.name + "; ";
-                    if (ftf.gid == follower) yes = true;
                 }
                 string proj = "";
                 foreach (TheElement ftf in dtf.projects)
                 {
                     proj += ftf.name + "; ";
                 }
-                
-                if (yes&(dtf.completed!=checkBoxNotDone.Checked)) dataGridView1.Rows.Add(n, i.name, follw, dtf.due_on, dtf.completed, proj, dtf.notes);
+                if (dtf.assignee!=null) 
+                    if(dtf.assignee.gid == assignee) yes = true;
+                bool compCheck = false;
+                if (checkBoxNotDone.Checked == false) compCheck = true;
+                if (yes & (dtf.completed ==compCheck || dtf.completed == false))
+                {
+                    dataGridView1.Rows.Add(t, i.name, dtf.assignee.name, follw, dtf.due_on, dtf.completed, proj, dtf.notes);
+                    t++;
+                }
+
                 progressBar1.Value = Convert.ToInt32(n* 100 / c1 );
-                n++;
+                n++; 
             }
             label6.Text = "Данные загружены";
 
@@ -90,6 +101,12 @@ namespace ASANA_connect_API_test
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonAddTask_Click(object sender, EventArgs e)
+        {
+            TaskAdd ta = new TaskAdd();
+            ta.ShowDialog();
         }
     }
 }

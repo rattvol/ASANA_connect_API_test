@@ -18,6 +18,7 @@ namespace ASANA_connect_API_test
     {
         public long id { get; set; }
         public string gid { get; set; }
+        public TheElement assignee { get; set; }
         public bool completed { get; set; }
         public string due_on { get; set; }
         public List<TheElement> followers { get; set; }
