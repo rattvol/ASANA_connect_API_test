@@ -65,11 +65,11 @@ namespace ASANA_connect_API_test
     }
     public class ProjectNames
     {
-        public List<Datum> ProjectsFind()
+        public List<Datum> ProjectsFind(string gidOfWS)
         {
             string connectionLine;
             Connect conection = new Connect();
-            connectionLine = "https://app.asana.com/api/1.0/projects";
+            connectionLine = "https://app.asana.com/api/1.0/workspaces/"+gidOfWS+"/projects";
             string result = conection.ConnectToLinq(connectionLine);
             DeserializeThiseJson deser = new DeserializeThiseJson();
             //*******только для одного запроса про пользователя**********
@@ -93,6 +93,22 @@ namespace ASANA_connect_API_test
             return meClass;
         }
     }
+    //**************получение данных о рабочих пространствах*******
+    public class Workspaces
+    {
+        public List<DatumWSR> WorkspacesFind()
+        {
+            string connectionLine;
+            Connect conection = new Connect();
+            connectionLine = "https://app.asana.com/api/1.0/workspaces/";
+            string result = conection.ConnectToLinq(connectionLine);
+            DeserializeThiseJson deser = new DeserializeThiseJson();
+            WorkspacesRoot meWorkspaces = new WorkspacesRoot();
+            meWorkspaces = (WorkspacesRoot)deser.DeserializeMe(result, meWorkspaces);
+            return meWorkspaces.data;
+        }
+    }
+
     //***************получение данных по всем пользователям(перечень)
     public class UsersData
     {
@@ -110,7 +126,6 @@ namespace ASANA_connect_API_test
             catch (Exception e)
             {
             }
-            List<Datum> dat = meClassUSD.data;
             return meClassUSD.data;
         }
     }

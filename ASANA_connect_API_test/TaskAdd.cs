@@ -18,6 +18,7 @@ namespace ASANA_connect_API_test
         ListBoxAdding lbaProjects = new ListBoxAdding();
         List<Datum> listOfUsers;
         List<Datum> listOfProjects;
+        List<DatumWSR> listOfWorkspaces;
         public TaskAdd()
         {
             InitializeComponent();
@@ -29,8 +30,20 @@ namespace ASANA_connect_API_test
             UsersData usd = new UsersData();
             listOfUsers = usd.UsersFind();
             //загрузка перечня проектов
+            Workspaces workspaces = new Workspaces();
+            listOfWorkspaces =  workspaces.WorkspacesFind();
+            foreach (DatumWSR i in listOfWorkspaces)
+            {
+                comboBoxWs.Items.Add(i.name);
+            }
+            comboBoxWs.SelectedIndex = 0;
+            FillCombos();
+        }
+        public void FillCombos()
+        {
+            string gidWS = listOfWorkspaces[comboBoxWs.SelectedIndex].gid;
             ProjectNames pn = new ProjectNames();
-            listOfProjects = pn.ProjectsFind();
+            listOfProjects = pn.ProjectsFind(gidWS);
             foreach (Datum d in listOfUsers)
             {
                 comboBox1.Items.Add(d.name);
@@ -86,7 +99,7 @@ namespace ASANA_connect_API_test
             paramsDic.Add("name", HttpUtility.UrlEncode(textBox1.Text));
             paramsDic.Add("notes", HttpUtility.UrlEncode(textBox2.Text));
             paramsDic.Add("assignee", listOfUsers[comboBox3.SelectedIndex].gid);
-            paramsDic.Add("workspace", "680119048803634");
+            paramsDic.Add("workspace", listOfWorkspaces[comboBoxWs.SelectedIndex].gid);
             paramsDic.Add("due_on", dateTimePicker1.Value.Date.ToString("yyyy-MM-dd"));
             string data = "";
             foreach (var item in paramsDic)
@@ -113,6 +126,11 @@ namespace ASANA_connect_API_test
             taskResponse = (RootObjectTaskResponse)desert.DeserializeMe(toDesert, taskResponse);
             label4.Text = taskResponse.data.gid;
             button1.Visible = false;
+        }
+
+        private void comboBoxWs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FillCombos();
         }
     }
 }

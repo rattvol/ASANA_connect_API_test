@@ -50,6 +50,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBoxWs = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label2
@@ -231,7 +233,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(407, 55);
+            this.label11.Location = new System.Drawing.Point(609, 39);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(77, 13);
             this.label11.TabIndex = 21;
@@ -240,16 +242,36 @@
             // comboBox3
             // 
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(612, 47);
+            this.comboBox3.Location = new System.Drawing.Point(612, 55);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(159, 21);
             this.comboBox3.TabIndex = 22;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(401, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 13);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "Workspace";
+            // 
+            // comboBoxWs
+            // 
+            this.comboBoxWs.FormattingEnabled = true;
+            this.comboBoxWs.Location = new System.Drawing.Point(404, 54);
+            this.comboBoxWs.Name = "comboBoxWs";
+            this.comboBoxWs.Size = new System.Drawing.Size(168, 21);
+            this.comboBoxWs.TabIndex = 24;
+            this.comboBoxWs.SelectedIndexChanged += new System.EventHandler(this.comboBoxWs_SelectedIndexChanged);
             // 
             // TaskAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.comboBoxWs);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.button2);
@@ -303,5 +325,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBoxWs;
     }
 }

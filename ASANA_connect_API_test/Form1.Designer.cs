@@ -35,6 +35,14 @@
             this.label5 = new System.Windows.Forms.Label();
             this.labelProject = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.taskName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.assignee = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.followers = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.doDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.completed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.project = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comboBoxUser = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxProject = new System.Windows.Forms.ComboBox();
@@ -44,14 +52,8 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label6 = new System.Windows.Forms.Label();
             this.buttonAddTask = new System.Windows.Forms.Button();
-            this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.taskName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.assignee = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.followers = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.doDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.completed = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.project = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comboBoxWs = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,9 +71,9 @@
             this.labelUserName.AutoSize = true;
             this.labelUserName.Location = new System.Drawing.Point(152, 13);
             this.labelUserName.Name = "labelUserName";
-            this.labelUserName.Size = new System.Drawing.Size(35, 13);
+            this.labelUserName.Size = new System.Drawing.Size(13, 13);
             this.labelUserName.TabIndex = 5;
-            this.labelUserName.Text = "label3";
+            this.labelUserName.Text = "..";
             // 
             // label3
             // 
@@ -87,27 +89,27 @@
             this.labelEmail.AutoSize = true;
             this.labelEmail.Location = new System.Drawing.Point(322, 13);
             this.labelEmail.Name = "labelEmail";
-            this.labelEmail.Size = new System.Drawing.Size(34, 13);
+            this.labelEmail.Size = new System.Drawing.Size(13, 13);
             this.labelEmail.TabIndex = 7;
-            this.labelEmail.Text = "email:";
+            this.labelEmail.Text = "..";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(473, 13);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(47, 13);
+            this.label5.Size = new System.Drawing.Size(65, 13);
             this.label5.TabIndex = 7;
-            this.label5.Text = "Проект:";
+            this.label5.Text = "Workspace:";
             // 
             // labelProject
             // 
             this.labelProject.AutoSize = true;
-            this.labelProject.Location = new System.Drawing.Point(526, 13);
+            this.labelProject.Location = new System.Drawing.Point(544, 13);
             this.labelProject.Name = "labelProject";
-            this.labelProject.Size = new System.Drawing.Size(34, 13);
+            this.labelProject.Size = new System.Drawing.Size(13, 13);
             this.labelProject.TabIndex = 7;
-            this.labelProject.Text = "email:";
+            this.labelProject.Text = "..";
             // 
             // dataGridView1
             // 
@@ -126,10 +128,50 @@
             this.dataGridView1.Size = new System.Drawing.Size(999, 362);
             this.dataGridView1.TabIndex = 8;
             // 
+            // number
+            // 
+            this.number.HeaderText = "№";
+            this.number.Name = "number";
+            // 
+            // taskName
+            // 
+            this.taskName.HeaderText = "Задача";
+            this.taskName.Name = "taskName";
+            // 
+            // assignee
+            // 
+            this.assignee.HeaderText = "Исполнитель";
+            this.assignee.Name = "assignee";
+            // 
+            // followers
+            // 
+            this.followers.HeaderText = "Подписчики";
+            this.followers.Name = "followers";
+            // 
+            // doDate
+            // 
+            this.doDate.HeaderText = "Дата готовности";
+            this.doDate.Name = "doDate";
+            // 
+            // completed
+            // 
+            this.completed.HeaderText = "Готово";
+            this.completed.Name = "completed";
+            // 
+            // project
+            // 
+            this.project.HeaderText = "Проект";
+            this.project.Name = "project";
+            // 
+            // comment
+            // 
+            this.comment.HeaderText = "Комментарий";
+            this.comment.Name = "comment";
+            // 
             // comboBoxUser
             // 
             this.comboBoxUser.FormattingEnabled = true;
-            this.comboBoxUser.Location = new System.Drawing.Point(60, 64);
+            this.comboBoxUser.Location = new System.Drawing.Point(547, 64);
             this.comboBoxUser.Name = "comboBoxUser";
             this.comboBoxUser.Size = new System.Drawing.Size(221, 21);
             this.comboBoxUser.TabIndex = 9;
@@ -137,7 +179,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(60, 45);
+            this.label2.Location = new System.Drawing.Point(544, 44);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(108, 13);
             this.label2.TabIndex = 10;
@@ -146,10 +188,11 @@
             // comboBoxProject
             // 
             this.comboBoxProject.FormattingEnabled = true;
-            this.comboBoxProject.Location = new System.Drawing.Point(298, 64);
+            this.comboBoxProject.Location = new System.Drawing.Point(301, 64);
             this.comboBoxProject.Name = "comboBoxProject";
             this.comboBoxProject.Size = new System.Drawing.Size(222, 21);
             this.comboBoxProject.TabIndex = 11;
+            this.comboBoxProject.SelectedIndexChanged += new System.EventHandler(this.comboBoxProject_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -165,7 +208,7 @@
             this.checkBoxNotDone.AutoSize = true;
             this.checkBoxNotDone.Checked = true;
             this.checkBoxNotDone.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxNotDone.Location = new System.Drawing.Point(571, 64);
+            this.checkBoxNotDone.Location = new System.Drawing.Point(840, 64);
             this.checkBoxNotDone.Name = "checkBoxNotDone";
             this.checkBoxNotDone.Size = new System.Drawing.Size(145, 17);
             this.checkBoxNotDone.TabIndex = 13;
@@ -208,51 +251,31 @@
             this.buttonAddTask.UseVisualStyleBackColor = true;
             this.buttonAddTask.Click += new System.EventHandler(this.buttonAddTask_Click);
             // 
-            // number
+            // comboBoxWs
             // 
-            this.number.HeaderText = "№";
-            this.number.Name = "number";
+            this.comboBoxWs.FormattingEnabled = true;
+            this.comboBoxWs.Location = new System.Drawing.Point(63, 64);
+            this.comboBoxWs.Name = "comboBoxWs";
+            this.comboBoxWs.Size = new System.Drawing.Size(211, 21);
+            this.comboBoxWs.TabIndex = 18;
+            this.comboBoxWs.SelectedIndexChanged += new System.EventHandler(this.comboBoxWs_SelectedIndexChanged);
             // 
-            // taskName
+            // label7
             // 
-            this.taskName.HeaderText = "Задача";
-            this.taskName.Name = "taskName";
-            // 
-            // assignee
-            // 
-            this.assignee.HeaderText = "Исполнитель";
-            this.assignee.Name = "assignee";
-            // 
-            // followers
-            // 
-            this.followers.HeaderText = "Подписчики";
-            this.followers.Name = "followers";
-            // 
-            // doDate
-            // 
-            this.doDate.HeaderText = "Дата готовности";
-            this.doDate.Name = "doDate";
-            // 
-            // completed
-            // 
-            this.completed.HeaderText = "Готово";
-            this.completed.Name = "completed";
-            // 
-            // project
-            // 
-            this.project.HeaderText = "Проект";
-            this.project.Name = "project";
-            // 
-            // comment
-            // 
-            this.comment.HeaderText = "Комментарий";
-            this.comment.Name = "comment";
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(60, 44);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(98, 13);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "Выбор Workspace";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1071, 598);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.comboBoxWs);
             this.Controls.Add(this.buttonAddTask);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.progressBar1);
@@ -303,6 +326,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn completed;
         private System.Windows.Forms.DataGridViewTextBoxColumn project;
         private System.Windows.Forms.DataGridViewTextBoxColumn comment;
+        private System.Windows.Forms.ComboBox comboBoxWs;
+        private System.Windows.Forms.Label label7;
     }
 }
 

@@ -1,16 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 using System.Windows.Forms;
-using System.Configuration;
-using System.IO;
-using System.Web.Script.Serialization;
 
 
 namespace ASANA_connect_API_test
@@ -30,7 +21,11 @@ namespace ASANA_connect_API_test
             labelUserName.Text = ro.data.name;
             labelEmail.Text = ro.data.email;
             labelProject.Text = ro.data.workspaces[0].name;
-
+            foreach(Workspace i in ro.data.workspaces)
+            {
+                comboBoxWs.Items.Add(i.name);
+            }
+            comboBoxWs.SelectedIndex = 0;
             UsersData usd = new UsersData();
             List<Datum> listOfUsers = usd.UsersFind();//краткий перечень пользователей
             foreach (Datum i in listOfUsers)
@@ -39,7 +34,7 @@ namespace ASANA_connect_API_test
                 comboBoxUser.Items.Add(i.name);
             }
             ProjectNames pn = new ProjectNames();
-            List<Datum> listOfProjects = pn.ProjectsFind();//краткий перечень проектов
+            List<Datum> listOfProjects = pn.ProjectsFind(ro.data.workspaces[0].gid);//краткий перечень проектов
             foreach (Datum i in listOfProjects)
             {
                 comboBoxProject.Items.Add(i.name);
@@ -54,8 +49,11 @@ namespace ASANA_connect_API_test
             TaskData td = new TaskData();
             UsersData usd = new UsersData();
             List<Datum> listOfUsers = usd.UsersFind();
+            Workspaces workspaces = new Workspaces();
+            List<DatumWSR> ws = workspaces.WorkspacesFind();
+            string workspaceGid = ws[comboBoxWs.SelectedIndex].gid;
             ProjectNames pn = new ProjectNames();
-            List<Datum> listOfProjects = pn.ProjectsFind();//краткий перечень проектов
+            List<Datum> listOfProjects = pn.ProjectsFind(workspaceGid);//краткий перечень проектов
             string projectGid;
             if (comboBoxProject.SelectedIndex >= 0) projectGid = listOfProjects[comboBoxProject.SelectedIndex].gid;
             else projectGid = null;
@@ -107,6 +105,25 @@ namespace ASANA_connect_API_test
         {
             TaskAdd ta = new TaskAdd();
             ta.ShowDialog();
+        }
+
+        private void comboBoxProject_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxWs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Workspaces workspaces = new Workspaces();
+            List<DatumWSR> ws = workspaces.WorkspacesFind();
+            string workspaceGid = ws[comboBoxWs.SelectedIndex].gid;
+            ProjectNames pn = new ProjectNames();
+            List<Datum> listOfProjects = pn.ProjectsFind(workspaceGid);//краткий перечень проектов
+            foreach (Datum i in listOfProjects)
+            {
+                comboBoxProject.Items.Add(i.name);
+            }
+            comboBoxProject.SelectedIndex = 0;
         }
     }
 }
