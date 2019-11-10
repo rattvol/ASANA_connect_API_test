@@ -21,13 +21,13 @@ namespace ASANA_connect_API_test
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            if (ConfigurationManager.AppSettings["token"].Length != 34)
+            Connect connect = new Connect();
+            while (connect.TryToken()==0)
             {
                 Form2 form2 = new Form2();
                 form2.ShowDialog();
-                if (form2.Err) Application.Exit(); else Application.Run(new Form1());
             }
-            else  Application.Run(new Form1());
+            Application.Run(new Form1());
         }
     }
     //получение перечня задач
@@ -151,18 +151,38 @@ namespace ASANA_connect_API_test
     {
         public string ConnectToLinq(string conline)
         {
+                string token = ConfigurationManager.AppSettings.Get("token");
+                token = "Bearer " + token;
+                WebHeaderCollection webHeaderCollection = new WebHeaderCollection();
+                webHeaderCollection.Add(HttpRequestHeader.Authorization, token);
+                WebRequest newRequest = WebRequest.Create(conline);
+                newRequest.Headers = webHeaderCollection;
+                WebResponse newResponse = newRequest.GetResponse();
+                Stream newStream = newResponse.GetResponseStream();
+                StreamReader reader = new StreamReader(newStream);
+                string outline = reader.ReadToEnd();
+                return outline;
+        }
+        public int TryToken()
+        {
+            string conline = "https://app.asana.com/api/1.0/users/me";
             string token = ConfigurationManager.AppSettings.Get("token");
             token = "Bearer " + token;
-            WebHeaderCollection webHeaderCollection = new WebHeaderCollection();
-            webHeaderCollection.Add(HttpRequestHeader.Authorization, token);
+            try
+            {
+                WebHeaderCollection webHeaderCollection = new WebHeaderCollection();
+                webHeaderCollection.Add(HttpRequestHeader.Authorization, token);
+                WebRequest newRequest = WebRequest.Create(conline);
+                newRequest.Headers = webHeaderCollection;
+                WebResponse newResponse = newRequest.GetResponse();
+                //Stream newStream = newResponse.GetResponseStream();
+                //StreamReader reader = new StreamReader(newStream);
+                return 1;
+            } catch 
+            {
+                return 0;
+            }
 
-            WebRequest newRequest = WebRequest.Create(conline);
-            newRequest.Headers = webHeaderCollection;
-            WebResponse newResponse = newRequest.GetResponse();
-            Stream newStream = newResponse.GetResponseStream();
-            StreamReader reader = new StreamReader(newStream);
-            string outline = reader.ReadToEnd();
-            return outline;
         }
         public string DownloadToAsana(string data)
         {
